@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker!</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<body>
+  
+
+    <div class="gameLayout">
+        <p>Kolikrát zvládneš kliknout během 10 vteřin?</p>
+        <p id="skore"></p>
+        <p>Tvoje nejvyšší skóre: <span id="lastSkore"></span></p>
+        <button id="tlacitko" class="buttonClass">Click me</button>
+        <div class="gamePanel">
+            <button id="nextTry">Zkusit znovu</button>
+            <button id="resetHighscore">Resetovat highscore</button>
+        </div>
+        <div>
+            <form id="formular">
+                <input type="text" name="name" placeholder="Nickname">
+                <button type="submit">Odeslat výsledky</button>
+            </form>
+        </div>
+    </div> 
+
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
+  
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
+
+
+<script src="game.js"></script>
+</body>
+</html>

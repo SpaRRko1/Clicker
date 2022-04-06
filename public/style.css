@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: 18px;
+    user-select: none;
+    touch-action: manipulation;
+}
+img {
+    height: auto;
+}
+
+
+#nextTry, #resetHighscore {
+    all: unset;
+    width: 100%;
+    margin-bottom: 15px;
+    height: 25px;
+    background-color: rgb(238, 140, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-bottom: 1px solid rgb(231, 108, 51);
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px gray;
+    cursor: pointer;
+    user-select: none;
+    touch-action: none;
+}
+
+a {
+    text-decoration: none;
+}
+.gameLayout {
+    width: 250px;
+    border: 2px solid black;
+    padding: 1rem;
+    background-image: url("https://media.istockphoto.com/vectors/cartoon-game-background-vector-id483979926?k=20&m=483979926&s=170667a&w=0&h=jgx-_NI8IS-cnMElsTtxbFUg_TfbeN9bVtKBGHyYfwc=");
+    background-size: cover;
+    margin: auto;
+    user-select: none;
+    touch-action: none;
+
+
+}
+#skore {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+    height: 50px;
+    user-select: none;
+}
+
+.buttonClass {
+    all: unset;
+    width: 100%;
+    height: 40px;
+    background-color: rgb(238, 140, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(107, 0, 0);
+    border-bottom: 1px solid rgb(231, 108, 51);
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px gray;
+    position: relative;
+    bottom: 10px;
+    cursor: crosshair;
+    user-select: none;
+    font-weight: bold;
+    touch-action: none;
+}
+
+@media only screen 
+    and (device-width: 390px) 
+    and (device-height: 844px) 
+    and (-webkit-device-pixel-ratio: 3) {
+        
+        html, body {
+            margin:0px;
+            user-select: none;
+            touch-action: none;
+          }
+        .gameLayout {
+            height: 100vh;
+            width: 100%;
+            margin: 0px;
+            user-select: none;
+            touch-action: none;
+            position: relative;
+        }
+        .gamePanel {
+            position: absolute;
+            bottom: 20vh;
+            width: 90%;
+        }
+        #nextTry, #resetHighscore {
+            height: 40px;
+        }
+
+        #tlacitko {
+            position: absolute;
+            width: 90%;
+            height: 80px;
+            top: 40vh;
+        }
+    }
