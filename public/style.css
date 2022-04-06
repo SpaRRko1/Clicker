@@ -11,7 +11,7 @@ img {
 }
 
 
-#nextTry, #resetHighscore {
+#nextTry, #resetHighscore, #saveName {
     all: unset;
     width: 100%;
     margin-bottom: 15px;
@@ -41,9 +41,29 @@ a {
     margin: auto;
     user-select: none;
     touch-action: none;
-
-
 }
+
+#name {
+    background: transparent;
+    border: unset;
+    border-bottom: dotted;
+    border-color: rgb(238, 140, 94);
+    color: rgb(107, 0, 0);
+    margin-bottom: 10px;
+}
+
+
+input {
+    all: unset;
+}
+#name:active {
+    background: transparent;
+    border: unset;
+    border-bottom: dotted;
+    border-color: rgb(238, 140, 94);
+    margin-bottom: 10px;
+}
+
 #skore {
     font-size: 45px;
     font-weight: bold;
