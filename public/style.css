@@ -5,37 +5,21 @@
     font-size: 18px;
     user-select: none;
     touch-action: manipulatison;
+    padding: 0;
+    margin: 0;
 }
 img {
     height: auto;
-}
-
-
-#nextTry, #resetHighscore, #saveName {
-    all: unset;
-    width: 100%;
-    margin-bottom: 15px;
-    height: 25px;
-    background-color: rgb(238, 140, 94);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border-bottom: 1px solid rgb(231, 108, 51);
-    border-radius: 4px;
-    box-shadow: 1px 1px 2px gray;
-    cursor: pointer;
-    user-select: none;
-    touch-action: none;
+    display: block;
 }
 
 a {
     text-decoration: none;
 }
+
 .gameLayout {
-    width: 250px;
+    width: 350px;
     border: 2px solid black;
-    padding: 1rem;
     background-image: url("https://media.istockphoto.com/vectors/cartoon-game-background-vector-id483979926?k=20&m=483979926&s=170667a&w=0&h=jgx-_NI8IS-cnMElsTtxbFUg_TfbeN9bVtKBGHyYfwc=");
     background-size: cover;
     margin: auto;
@@ -43,39 +27,75 @@ a {
     touch-action: none;
 }
 
-#name {
-    background: transparent;
-    border: unset;
-    border-bottom: dotted;
-    border-color: rgb(238, 140, 94);
-    color: rgb(107, 0, 0);
-    margin-bottom: 10px;
+#gameLoginScreen {
+    padding: 10px 10px 25px 10px;
+}
+
+#gameLoginScreen p {
+    margin: 10px 0px;
+}
+
+.gameInputWrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* When nickname not set then stay hidden*/
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 20px 20px;
+    display: none;
+}
+/*End*/
+
+#gameControlPanel  {
+    display: flex;
+    flex-direction: column;
+    display: none;
 }
 
 
-input {
-    all: unset;
-}
-#name:active {
-    background: transparent;
-    border: unset;
-    border-bottom: dotted;
-    border-color: rgb(238, 140, 94);
-    margin-bottom: 10px;
-}
-
-#skore {
+#score {
     font-size: 45px;
     font-weight: bold;
     text-align: center;
     height: 50px;
     user-select: none;
+    margin: 30px 0px;
 }
 
-.buttonClass {
+#gameTextTop {
+    font-weight: bold;
+}
+
+#mainButton {
     all: unset;
-    width: 100%;
-    height: 40px;
+    width: 90%;
+    height: 240px;
+    margin: auto;
+    margin-bottom: 4px;
+    background-color: rgb(238, 140, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(107, 0, 0);
+    border-bottom: 1px solid rgb(231, 108, 51);
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px gray;
+    cursor: crosshair;
+    user-select: none;
+    font-weight: bold;
+    touch-action: none;
+}
+
+
+#gameControlAgain {
+    all: unset;
+    width: 90%;
+    line-height: 35px;
+    margin: auto;
+    margin-bottom: 20px;
     background-color: rgb(238, 140, 94);
     display: flex;
     justify-content: center;
@@ -84,13 +104,51 @@ input {
     border-bottom: 1px solid rgb(231, 108, 51);
     border-radius: 4px;
     box-shadow: 1px 1px 2px gray;
-    position: relative;
-    bottom: 10px;
-    cursor: crosshair;
+    user-select: none;
+    font-weight: bold;
+    cursor: pointer;
+    touch-action: none;
+}
+#gameLeaderboardTop {
+    all: unset;
+    width: 90%;
+    line-height: 35px;
+    margin: auto;
+    background-color: rgb(238, 140, 94);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(107, 0, 0);
+    border: 2px solid rgb(238, 140, 94);
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 1px 1px 2px gray;
     user-select: none;
     font-weight: bold;
     touch-action: none;
 }
+#gameLeaderboard {
+    all: unset;
+    width: 90%;
+    line-height: 28px;
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: rgb(238, 163, 129);
+    color: rgb(107, 0, 0);
+    border-bottom: 2px solid rgb(238, 140, 94);
+    border-right: 2px solid rgb(238, 140, 94);
+    border-left: 2px solid rgb(238, 140, 94);
+    border-radius: 0px 0px 4px 4px;
+    box-shadow: 1px 1px 2px gray;
+    user-select: none;
+    cursor: pointer;
+    touch-action: none;
+}
+
+#gameLeaderboard p  {
+    text-align: left;
+    padding: 15px 5px 5px 5px;
+}
+
 
 @media only screen 
     and (device-width: 390px) 
@@ -110,19 +168,24 @@ input {
             touch-action: none;
             position: relative;
         }
-        .gamePanel {
-            position: absolute;
-            bottom: 20vh;
-            width: 90%;
-        }
-        #nextTry, #resetHighscore {
-            height: 40px;
-        }
 
-        #tlacitko {
-            position: absolute;
+        #mainButton {
+            all: unset;
             width: 90%;
-            height: 80px;
-            top: 40vh;
+            height: 250px;
+            margin: auto;
+            margin-bottom: 4px;
+            background-color: rgb(238, 140, 94);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(107, 0, 0);
+            border-bottom: 1px solid rgb(231, 108, 51);
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px gray;
+            cursor: crosshair;
+            user-select: none;
+            font-weight: bold;
+            touch-action: none;
         }
     }

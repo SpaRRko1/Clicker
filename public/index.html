@@ -7,23 +7,29 @@
     <title>Clicker!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 <body>
-    <div class="gameLayout">
-        <p>Kolikrát zvládneš kliknout během 10 vteřin?</p>
-        <div>
-            <form id="formular">
-                <input id="name" type="text" name="name" placeholder="Nickname" value="">
-                <button id="saveName" class="buttonClass">Uložit jméno</button>
-            </form>
+    <div class="gameLayout" id="gameNicknameSave">
+        <div id="gameLoginScreen">
+            <p>Nejprve si zvol přezdívku a klikni na Uložit</p>
+            <div class="gameInputWrapper">
+                <input type="text" id="nickname" name="name">
+                <img width="18"  id="gameSaveButton" src="https://firebasestorage.googleapis.com/v0/b/clicker-f81b0.appspot.com/o/saveIcon.png?alt=media&token=231a81ac-c4a6-45b9-af84-bc0aaf60af75">
+            </div>
         </div>
-        <p id="skore"></p>
-        <p>Tvoje nejvyšší skóre: <span id="lastSkore"></span></p>
-        <button id="tlacitko" class="buttonClass">Click me</button>
-        <div class="gamePanel">
-            <button id="nextTry">Zkusit znovu</button>
-            <button id="resetHighscore">Resetovat highscore</button>
+        <div id="gameContainer">
+            <p><span id="gameTextTop"></span>, kolikrát zvládneš kliknout během 10&nbsp;vteřin?</p>
+            <p id="score">---</p>
+            <button id="mainButton">Click me</button>
+            <div id="gamePanel">
+            </div>
         </div>
-    </div> 
-
+        <div id="gameControlPanel">
+            <div id="gameControlAgain">
+                Znovu
+            </div>
+            <p id="gameLeaderboardTop">👑 Aktuální nejlepší klikač 👑</p>
+            <div id="gameLeaderboard">Data se načtou až odehraješ první kolo<br /><br /></div>
+        </div>
+    </div>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 

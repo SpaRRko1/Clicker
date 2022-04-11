@@ -1,89 +1,80 @@
-const tlacitko = document.getElementById('tlacitko');
-const nextTry = document.getElementById('nextTry');
-const resetHighScore = document.getElementById('resetHighscore');
-var skoreCounter = 0;
-var highestScore = localStorage.getItem('bestRecord');
-const tlacitkoSave = document.getElementById('saveName');
-var nicknameSaved = localStorage.getItem('nickname');
-const formular = document.getElementById('formular');
+const mainButton = document.getElementById('mainButton');
+const nicknameSave = document.getElementById('gameSaveButton');
+const restartButton = document.getElementById('gameControlAgain');
+var actualScore = 0;
+
+nicknameSave.addEventListener('click', function () {
+    var nickname = document.getElementById('nickname').value;
+    localStorage.setItem('nickname', nickname);
+    loginProcessCheck()
+})
 
 
-    tlacitkoSave.addEventListener('click', function(){
-        var nickname = document.getElementById('name').value;
-        localStorage.setItem('nickname', nickname);
+//Login process
+function loginProcessCheck() {
+    var nickname = localStorage.getItem('nickname');
 
-    });
-    if (nicknameSaved !== null) {
-        formular.style.visibility = "hidden";
-        console.log("Má vyplněné jméno")
-    }
-    else {
-        console.log("Nemá jméno")
-    }
-
-
-tlacitko.addEventListener('click', function () {
-    skoreCounter++;
-    updateSkore();
-    return
-});
-
-
-setTimeout(function () {
-    init();
-    document.getElementById('tlacitko').disabled = true;
-    if (skoreCounter > highestScore) {
-        localStorage.setItem('bestRecord', skoreCounter);
+    if (localStorage.getItem('nickname') !== null) {
+        document.getElementById('gameContainer').style.display = 'block';
+        document.getElementById('gamePanel').style.display = 'block';
+        document.getElementById('gameControlPanel').style.display = 'flex';
+        document.getElementById('gameLoginScreen').style.display = 'none';
     };
-}, 10000);
-
-
-function updateSkore() {
-    if (skoreCounter === 0) {
-        document.getElementById('skore').textContent = "--";
-    } else {
-        document.getElementById('skore').textContent = skoreCounter;
-    }
+    //TopText
+    document.getElementById('gameTextTop').textContent = nickname;
 }
 
-//LAST RECORD
-setInterval(function () {
-    document.getElementById('lastSkore').textContent = localStorage.getItem('bestRecord');
-}, 10)
 
 
-
-//zkusit znovu
-nextTry.addEventListener('click', function () {
-    window.location.reload();
+//Počítadlo skóre
+mainButton.addEventListener('click', function () {
+    actualScore++;
+    updateScore(); //updates scoreline
 })
 
-//reset Highscore
-resetHighScore.addEventListener('click', function () {
-    localStorage.removeItem('bestRecord');
-})
+function updateScore() {
+    document.getElementById('score').textContent = actualScore;
+}
 
-function init(){
-   // Initialize Firebase
+mainButton.addEventListener("click", function () {
+    setTimeout(function timeCounter() {
+        document.getElementById('mainButton').disabled = true;
+        init();
+    }, 10000) //Ovládání času hry
+
+}, {
+    once: true
+});
+
+//restart počítadla
+restartButton.addEventListener('click', function () {
+    location.reload();
+})
+//Počítatdlo skóre end
+
+//Database 
+function init() {
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-     database = firebase.database();
-
-     var nickname = document.getElementById('name').value;
-     var listRecords = database.ref('Výsledky');
-     var addRecord = listRecords.push();
-     addRecord.set({
-         highestscore: highestScore,
-         nickname: nickname
-     });
-
-//Přenahrátí celé DB
-//      database.ref('Výsledky/').set({
-//      nickname: "jmeno",
-//      score: "120"
-//    });
+    database = firebase.database();
+    var score = Number(document.getElementById('score').textContent);
+    var nickname = localStorage.getItem('nickname', nickname);
+    var listRecords = database.ref('Výsledky');
+    var addRecord = listRecords.push();
+    addRecord.set({
+        score: score,
+        nickname: nickname
+    });
+    var scoresRef = database.ref("Výsledky");
+    scoresRef.orderByChild('score').limitToLast(4).on("value", function (snapshot) {
+        snapshot.forEach(function (data) {
+            document.getElementById('gameLeaderboard').innerHTML = (data.val().nickname) + '<br />' + (data.val().score) + '<br />';
+        });
+    });
 }
 
 var database = {};
+
 const firebaseConfig = {
     apiKey: "AIzaSyATPSa9G96bQiXSLgsXp9gt8OClr1rHYCM",
     authDomain: "clicker-f81b0.firebaseapp.com",
@@ -93,8 +84,8 @@ const firebaseConfig = {
     messagingSenderId: "611494009746",
     appId: "1:611494009746:web:24146a935ff6a13b707f4b",
     measurementId: "G-YHMVCPKT55"
-  };
+};
 
 document.addEventListener("DOMContentLoaded", function () {
-    updateSkore();
-});
+    loginProcessCheck();
+})
