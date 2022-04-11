@@ -7,10 +7,14 @@
     <title>Clicker!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 <body>
-  
-
     <div class="gameLayout">
         <p>Kolikrát zvládneš kliknout během 10 vteřin?</p>
+        <div>
+            <form id="formular">
+                <input id="name" type="text" name="name" placeholder="Nickname" value="">
+                <button id="saveName" class="buttonClass">Uložit jméno</button>
+            </form>
+        </div>
         <p id="skore"></p>
         <p>Tvoje nejvyšší skóre: <span id="lastSkore"></span></p>
         <button id="tlacitko" class="buttonClass">Click me</button>
@@ -18,18 +22,11 @@
             <button id="nextTry">Zkusit znovu</button>
             <button id="resetHighscore">Resetovat highscore</button>
         </div>
-        <div>
-            <form id="formular">
-                <input type="text" name="name" placeholder="Nickname">
-                <button type="submit">Odeslat výsledky</button>
-            </form>
-        </div>
     </div> 
 
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script> 
-  
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script> 
 
 
