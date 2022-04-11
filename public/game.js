@@ -1,9 +1,26 @@
 const tlacitko = document.getElementById('tlacitko');
 const nextTry = document.getElementById('nextTry');
 const resetHighScore = document.getElementById('resetHighscore');
-
 var skoreCounter = 0;
-var highestScore = localStorage.getItem('lastRecord');
+var highestScore = localStorage.getItem('bestRecord');
+const tlacitkoSave = document.getElementById('saveName');
+var nicknameSaved = localStorage.getItem('nickname');
+const formular = document.getElementById('formular');
+
+
+    tlacitkoSave.addEventListener('click', function(){
+        var nickname = document.getElementById('name').value;
+        localStorage.setItem('nickname', nickname);
+
+    });
+    if (nicknameSaved !== null) {
+        formular.style.visibility = "hidden";
+        console.log("Má vyplněné jméno")
+    }
+    else {
+        console.log("Nemá jméno")
+    }
+
 
 tlacitko.addEventListener('click', function () {
     skoreCounter++;
@@ -13,12 +30,11 @@ tlacitko.addEventListener('click', function () {
 
 
 setTimeout(function () {
+    init();
     document.getElementById('tlacitko').disabled = true;
-
     if (skoreCounter > highestScore) {
-        localStorage.setItem('lastRecord', skoreCounter);
+        localStorage.setItem('bestRecord', skoreCounter);
     };
-
 }, 10000);
 
 
@@ -32,7 +48,7 @@ function updateSkore() {
 
 //LAST RECORD
 setInterval(function () {
-    document.getElementById('lastSkore').textContent = localStorage.getItem('lastRecord');
+    document.getElementById('lastSkore').textContent = localStorage.getItem('bestRecord');
 }, 10)
 
 
@@ -44,37 +60,30 @@ nextTry.addEventListener('click', function () {
 
 //reset Highscore
 resetHighScore.addEventListener('click', function () {
-    localStorage.removeItem('lastRecord');
+    localStorage.removeItem('bestRecord');
 })
 
 function init(){
    // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      database = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+     database = firebase.database();
 
-//     database.ref('test/').set({
-//     name: "mirek"
-//   });
+     var nickname = document.getElementById('name').value;
+     var listRecords = database.ref('Výsledky');
+     var addRecord = listRecords.push();
+     addRecord.set({
+         highestscore: highestScore,
+         nickname: nickname
+     });
 
-// var asd = ["test","test2"];
-
-// for(var i=0;i<asd.length;i++){
-//     var item= asd[i];
-// }
-
-
-// asd.forEach(a=> {
-
-    
-// });
-
-
-
-
+//Přenahrátí celé DB
+//      database.ref('Výsledky/').set({
+//      nickname: "jmeno",
+//      score: "120"
+//    });
 }
 
 var database = {};
- 
 const firebaseConfig = {
     apiKey: "AIzaSyATPSa9G96bQiXSLgsXp9gt8OClr1rHYCM",
     authDomain: "clicker-f81b0.firebaseapp.com",
@@ -88,5 +97,4 @@ const firebaseConfig = {
 
 document.addEventListener("DOMContentLoaded", function () {
     updateSkore();
-    init();
 });
