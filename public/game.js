@@ -3,6 +3,7 @@ const nicknameSave = document.getElementById('gameSaveButton');
 const restartButton = document.getElementById('gameControlAgain');
 var actualScore = 0;
 
+
 nicknameSave.addEventListener('click', function () {
     var nickname = document.getElementById('nickname').value;
     localStorage.setItem('nickname', nickname);
@@ -65,11 +66,18 @@ function init() {
         score: score,
         nickname: nickname
     });
+    var arr = [];
     var scoresRef = database.ref("Výsledky");
     scoresRef.orderByChild('score').limitToLast(4).on("value", function (snapshot) {
         snapshot.forEach(function (data) {
-            document.getElementById('gameLeaderboard').innerHTML = (data.val().nickname) + '<br />' + (data.val().score) + '<br />';
-        });
+            arr.unshift((data.val().score) + ' - ' + (data.val().nickname));
+        })
+        console.log(arr);
+        document.getElementById('gameLeaderboard0').textContent = arr[0];
+        document.getElementById('gameLeaderboard1').textContent = arr[1];
+        document.getElementById('gameLeaderboard2').textContent = arr[2];
+        document.getElementById('gameLeaderboard3').textContent = arr[3];
+        document.getElementById('gameLeaderboardHide').style.display = 'none';
     });
 }
 
